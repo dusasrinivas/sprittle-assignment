@@ -353,11 +353,8 @@ LoginBtn.addEventListener("click", function() {
 
         data.push(user)
         console.log(data)
-        nameEl.value="";
-        emailEl.value="";
-        passwordEl.value="";
-        studentRadio.value="";
-        teacherRadio.value="";
+        
+       
 
         localStorage.setItem("userData", JSON.stringify(data))
 
