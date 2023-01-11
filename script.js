@@ -104,26 +104,26 @@ function getDataValues(){
     if(userData.username==="student"){
 
 
-      // function getDataValues(){
-      //   let theData = localStorage.getItem(("work"));
-      //   let parsed = JSON.parse(theData)
-      //   if (parsed===null){
-      //       return []
-      //   }else{
-      //       return parsed
-      //   }
+      function getDataValues(){
+        let theData = localStorage.getItem(("work"));
+        let parsed = JSON.parse(theData)
+        if (parsed===null){
+            return []
+        }else{
+            return parsed
+        }
            
-      //  }
+       }
        
        
-      //  let values = getDataValues();
-      //  console.log(values)
+       let values = getDataValues();
+       console.log(values)
 
        for (let eachOne of values){
         let paragraphEl1 = document.createElement("p");
         paragraphEl1.textContent = eachOne;
         document.getElementById("container2").appendChild(paragraphEl1)
-       
+             
 
         
         
@@ -156,8 +156,7 @@ function getDataValues(){
  localStorage.setItem("work", JSON.stringify(values))
  
  
-    }
-
+ }
    
 
 
