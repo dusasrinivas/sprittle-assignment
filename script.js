@@ -122,12 +122,11 @@ function getDataValues(){
        for (let eachOne of values){
         let paragraphEl1 = document.createElement("p");
         paragraphEl1.textContent = eachOne;
-        let aEl = document.getElementById("container2")
-        // let bEl = document.getElementById("container1")
+        document.getElementById("container2").appendChild(paragraphEl1)
+       
 
-        aEl.classList.add("ad");
-        bEl.classList.add("ad");
-        aEl.appendChild(paragraphEl1);
+        
+        
 
         
 
