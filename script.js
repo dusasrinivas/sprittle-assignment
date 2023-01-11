@@ -89,7 +89,7 @@ LogoutBtn.addEventListener("click", function() {
 function getDataValues(){
   let theData = localStorage.getItem(("work"));
   let parsing = JSON.parse(theData)
-  if (parsed===null){
+  if (parsing===null){
       return []
   }else{
       return parsing
