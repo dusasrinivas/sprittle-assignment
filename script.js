@@ -1,22 +1,36 @@
+function getLoginPage(){
+  let container2El = document.getElementById("container2");
+  let divEl = document.createElement("div");
+  divEl.classList.add("abc");
+  container2El.appendChild(divEl);
+let labelEmail = document.createElement("label");
+labelEmail.classList.add("label");
+labelEmail.textContent="Email";
 
-// let data = [];
-function getDataFromLocalStorage(){
-    let dataFromlocal = localStorage.getItem("userData")
-    let parsed = JSON.parse(dataFromlocal);
-    if(parsed===null){
-        return []
-    }else{
-        return parsed
-    }
-}
+let inputEmail = document.createElement("input");
 
-let data = getDataFromLocalStorage();
-console.log(data)
+inputEmail.setAttribute("type", "text");
+inputEmail.placeholder="Enter your Email";
+inputEmail.id="email";
 
 
-function login(){
-    let emailValue = document.getElementById("email").value;
-    let passwordValue = document.getElementById("password").value;
+let labelpwd = document.createElement("label");
+labelpwd.classList.add("label2");
+labelpwd.textContent="Password";
+
+let inputPwd = document.createElement("input");
+
+inputPwd.setAttribute("type", "password");
+inputPwd.placeholder="Enter your Password";
+inputPwd.id="password";
+
+let LoginBtn = document.createElement("button");
+LoginBtn.classList.add("button");
+LoginBtn.textContent="Login";
+
+LoginBtn.addEventListener("click", function(){
+  let emailValue = inputEmail.value;
+    let passwordValue = inputPwd.value;
 
  function getLogin(item){
     return item.email===emailValue && item.password===passwordValue;
@@ -32,74 +46,125 @@ if(userData){
     document.getElementById("container2").style.backgroundColor="lightblue"
     document.getElementById("container1").style.backgroundColor="lightblue"
 
+
+let LogoutBtn = document.createElement("button");
+LogoutBtn.classList.add("login-button-signup");
+LogoutBtn.textContent="Logout";
+
+LogoutBtn.addEventListener("click", function() {
+  document.getElementById("container2").textContent="";
+  document.getElementById("container2").style.backgroundColor="orange"
+  document.getElementById("container1").style.backgroundColor="orange"
+  getLoginPage();
+})
+
+
+    
+
+
+
     let headingEl = document.createElement("h1");
     headingEl.textContent="Hi, You are Welcome Mr." + userData.name;
     let paragraphEl1 = document.createElement("p");
     paragraphEl1.textContent="Email Id :" + userData.email;
 
     let paragraphEl2 = document.createElement("p");
-    paragraphEl2.textContent="Date of Birth : " + userData.dob;
+    paragraphEl2.textContent="Category : " + userData.username;
 
-    let paragraphEl3 = document.createElement("p");
-    paragraphEl3.textContent="Your Message is : " + userData.message;
+    
 
+
+    document.getElementById('container2').appendChild(LogoutBtn);
     document.getElementById("container2").appendChild(headingEl);
     document.getElementById("container2").appendChild(paragraphEl1);
     document.getElementById("container2").appendChild(paragraphEl2);
-    document.getElementById("container2").appendChild(paragraphEl3);
 
-    let puzzleBtn = document.createElement("button");
-    puzzleBtn.textContent="Start the Super Puzzle"
-    puzzleBtn.classList.add("button")
-    
-    document.getElementById("container2").appendChild(puzzleBtn);
-    puzzleBtn.onclick=function(){
-        function superPuzzle(arr) {
-            let moves = [];
-            let emptyRow, emptyCol;
-          
-            // find position of empty tile
-            for (let i = 0; i < arr.length; i++) {
-              for (let j = 0; j < arr[i].length; j++) {
-                if (arr[i][j] === 0) {
-                  emptyRow = i;
-                  emptyCol = j;
-                  break;
-                }
-              }
-            }
-          
-            // iterate over the array and make moves
-            for (let i = 0; i < arr.length; i++) {
-              for (let j = 0; j < arr[i].length; j++) {
-                // check if tile is in correct position
-                if (arr[i][j] !== i * arr.length + j + 1) {
-                  // check if empty tile is in a position to slide the tile
-                  if (emptyRow === i && (emptyCol === j - 1 || emptyCol === j + 1)) {
-                    moves.push(arr[i][j]);
-                    emptyRow = i;
-                    emptyCol = j;
-                  } else if (emptyCol === j && (emptyRow === i - 1 || emptyRow === i + 1)) {
-                    moves.push(arr[i][j]);
-                    emptyRow = i;
-                    emptyCol = j;
-                  }
-                }
-              }
-            }
-          
-            return moves;
-          }
+  let line = document.createElement("hr");
+  line.classList.add("line-style");
+    document.getElementById("container2").appendChild(line);
 
-          
-          let simpleExample = [    [ 1, 2, 3, 4],
-              [ 5, 0, 6, 8],
-              [ 9,10, 7,11],
-              [13,14,15,12]
-          ];
-          
-          console.log(superPuzzle(simpleExample)); // [6,7,11,12]
+     // let values=[];
+
+
+function getDataValues(){
+  let theData = localStorage.getItem(("work"));
+  let parsing = JSON.parse(theData)
+  if (parsed===null){
+      return []
+  }else{
+      return parsing
+  }
+     
+ }
+ 
+ 
+ let values = getDataValues();
+ console.log(values)
+
+    if(userData.username==="student"){
+
+
+      // function getDataValues(){
+      //   let theData = localStorage.getItem(("work"));
+      //   let parsed = JSON.parse(theData)
+      //   if (parsed===null){
+      //       return []
+      //   }else{
+      //       return parsed
+      //   }
+           
+      //  }
+       
+       
+      //  let values = getDataValues();
+      //  console.log(values)
+
+       for (let eachOne of values){
+        let paragraphEl1 = document.createElement("p");
+        paragraphEl1.textContent = eachOne;
+        let aEl = document.getElementById("container2")
+        // let bEl = document.getElementById("container1")
+
+        aEl.classList.add("ad");
+        bEl.classList.add("ad");
+        aEl.appendChild(paragraphEl1);
+
+        
+
+       }
+
+
+
+    }else{
+     
+ 
+ const getAdd=(a,b)=>a+b;
+ let adding = getAdd(7,5);
+ values.push(adding)
+ 
+ const getSub=(a,b)=>a-b;
+ let substract = getSub(7,4);
+ values.push(substract)
+ 
+ const getMultiply=(a,b)=>a*b;
+ let multiply = getMultiply(7,5);
+ values.push(multiply)
+ 
+ const getDiv=(a,b)=>a/b;
+ let division = getDiv(7,2);
+ values.push(Math.floor(division))
+ 
+ localStorage.setItem("work", JSON.stringify(values))
+ 
+ 
     }
+
+   
+
+
+
+    
+    
 
 
 
@@ -112,12 +177,34 @@ if(userData){
 }
 
 
+})
 
-}
+let paragraphEl1 = document.createElement("p");
+paragraphEl1.textContent="don't you have an account   ";
+paragraphEl1.classList.add("para");
 
-function register(){
-    
-    document.getElementById("container2").textContent="";
+let signUpBtn = document.createElement("button");
+signUpBtn.classList.add("button");
+signUpBtn.textContent="Sign Up";
+paragraphEl1.appendChild(signUpBtn);
+
+signUpBtn.addEventListener("click", function() {
+
+  document.getElementById("container2").textContent="";
+
+  let LoginBtn = document.createElement("button");
+LoginBtn.classList.add("login-button-signup");
+LoginBtn.textContent="Login";
+
+LoginBtn.addEventListener("click", function() {
+  document.getElementById("container2").textContent="";
+  document.getElementById("container2").style.backgroundColor="orange"
+  document.getElementById("container1").style.backgroundColor="orange"
+  getLoginPage();
+  
+
+})
+
 
     let labelEl1 = document.createElement("label")
     labelEl1.textContent="Name";
@@ -155,13 +242,36 @@ function register(){
     passwordEl.type="password";
     passwordEl.placeholder="Enter Your Password";
 
-    let dobEl = document.createElement("input");
-    dobEl.type="date";
-    dobEl.placeholder="Enter Your Date of Birth";
+    let teacherRadio = document.createElement("input");
+    teacherRadio.id = "teacher";
+    teacherRadio.type="radio";
+    teacherRadio.name="username";
+    teacherRadio.value="teacher";
 
-    let msgEl = document.createElement("textarea");
-    msgEl.placeholder="Type any thing.";
-    msgEl.type="text";
+
+    let teacherLabel = document.createElement("label");
+    teacherLabel.htmlFor="teacher";
+    teacherLabel.textContent="Teacher";
+
+
+
+    let studentRadio = document.createElement("input");
+    studentRadio.id = "student";
+    studentRadio.type="radio";
+    studentRadio.name="username";
+    studentRadio.value="student";
+    
+    let studentLabel = document.createElement("label");
+    studentLabel.htmlFor="student";
+    studentLabel.textContent="Student";
+
+    // let dobEl = document.createElement("input");
+    // dobEl.type="date";
+    // dobEl.placeholder="Enter Your Date of Birth";
+
+    // let msgEl = document.createElement("textarea");
+    // msgEl.placeholder="Type any thing.";
+    // msgEl.type="text";
 
     let buttonEl = document.createElement("button");
     buttonEl.textContent="Register";
@@ -169,7 +279,7 @@ function register(){
     buttonEl.setAttribute("textalign", "center");
 
 
-
+    document.getElementById("container2").appendChild(LoginBtn);
     document.getElementById("container2").appendChild(labelEl1);
     document.getElementById("container2").appendChild(nameEl);
 
@@ -178,20 +288,56 @@ function register(){
 
     document.getElementById("container2").appendChild(labelEl3);
     document.getElementById("container2").appendChild(passwordEl);
+    let inputcontainer = document.createElement("div")
+    document.getElementById("container2").appendChild(inputcontainer);
+    
 
-    document.getElementById("container2").appendChild(labelEl4);
-    document.getElementById("container2").appendChild(dobEl);
 
-    document.getElementById("container2").appendChild(labelEl5);
-    document.getElementById("container2").appendChild(msgEl);
+    inputcontainer.appendChild(teacherRadio);
+    inputcontainer.appendChild(teacherLabel);
+    inputcontainer.appendChild(document.createElement("br"));
+    inputcontainer.appendChild(studentRadio);
+    inputcontainer.appendChild(studentLabel);
+
+
+
+
+    
 
      document.getElementById("container2").appendChild(buttonEl);
+
+     let user = {
+      name:"",
+      email:"",
+      password:"",
+      username:"",
+  };
+
+  nameEl.addEventListener("change", function(event) {
+    user.name = event.target.value;
+  });
+
+  emailEl.addEventListener("change", function(event) {
+    user.email = event.target.value;
+  });
+
+  passwordEl.addEventListener("change", function(event) {
+    user.password = event.target.value;
+  });
+
+  teacherRadio.addEventListener("change", function(event) {
+    user.username = event.target.value;
+  });
+  
+  studentRadio.addEventListener("change", function(event) {
+    user.username = event.target.value;
+  });
+  
 
      buttonEl.onclick=function(){
         let params = {
             name:nameEl.value,
-            email:emailEl.value,
-            message:msgEl.value
+            email:emailEl.value,           
         }
         console.log(params)
         
@@ -203,23 +349,59 @@ function register(){
             alert("success " + res.status );
         })
 
-        let user = {
-            name:nameEl.value,
-            email:emailEl.value,
-            password:passwordEl.value,
-            dob:dobEl.value,
-            message:msgEl.value
-        };
+        
+
         data.push(user)
         console.log(data)
         nameEl.value="";
         emailEl.value="";
         passwordEl.value="";
-        dobEl.value="";
-        msgEl.value="";
+        studentRadio.value="";
+        teacherRadio.value="";
 
         localStorage.setItem("userData", JSON.stringify(data))
 
         
      }
+
+
+})
+
+let spanEl = document.createElement("span");
+spanEl.textContent="   here !";
+paragraphEl1.appendChild(spanEl); 
+
+
+
+
+
+
+  divEl.appendChild(labelEmail);
+  divEl.appendChild(inputEmail);
+  divEl.appendChild(labelpwd);
+  divEl.appendChild(inputPwd);
+  divEl.appendChild(LoginBtn);
+  divEl.appendChild(paragraphEl1);
+  
+
+  
 }
+
+getLoginPage();
+
+
+// let data = [];
+function getDataFromLocalStorage(){
+    let dataFromlocal = localStorage.getItem("userData")
+    let parsed = JSON.parse(dataFromlocal);
+    if(parsed===null){
+        return []
+    }else{
+        return parsed
+    }
+}
+
+let data = getDataFromLocalStorage();
+console.log(data)
+
+
